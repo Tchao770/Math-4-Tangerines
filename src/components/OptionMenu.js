@@ -1,9 +1,12 @@
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
+import './styles.scss';
 
 function OptionMenu() {
     return (
         <div>
-            <Button>Math Options</Button>
+            <Box>
+                Math Options
+            </Box>
         </div>
     );
 }
