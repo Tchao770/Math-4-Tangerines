@@ -12,3 +12,7 @@ Allow user to create custom math problem sets that can be generated, given a ran
 Upon each generation, there will also be an answer key generated along with the given problem set, to allow for ease of checking and assessment.
 
 An elapsed timer to gauge users performance and speed when solving problems.
+
+#Technologies Used
+ReactJS
+Styled Components
