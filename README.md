@@ -13,6 +13,6 @@ Upon each generation, there will also be an answer key generated along with the 
 
 An elapsed timer to gauge users performance and speed when solving problems.
 
-#Technologies Used
+### Technologies Used
 ReactJS
 Styled Components
