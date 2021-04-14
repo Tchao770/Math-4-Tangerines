@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.jsx',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -16,6 +16,10 @@ module.exports = {
                     loader: 'babel-loader',
                     options: { presets: ['@babel/preset-react', '@babel/preset-env'] }
                 }
+            },
+            {
+                test: /\.scss/,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'] // Note that postcss loader must come before sass-loader
             }
         ]
     },
