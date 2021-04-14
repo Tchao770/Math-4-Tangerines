@@ -1,14 +1,8 @@
-import { Box, Button } from '@material-ui/core';
-import './styles.scss';
 
-function OptionMenu() {
-    return (
-        <div>
-            <Box>
-                Math Options
-            </Box>
-        </div>
-    );
+function OptionMenu(){
+    return(
+        <h1>hel</h1>
+    )
 }
 
 export default OptionMenu;

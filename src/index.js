@@ -1,10 +1,10 @@
 import React from 'react';
-import App from './App';
 import ReactDOM from 'react-dom';
-
+import OptionMenu from './components/OptionMenu'
+console.log("smell");
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <OptionMenu/>
     </React.StrictMode>,
     document.getElementById('root')
 );
