@@ -20,18 +20,20 @@ function Operators() {
     )
 }
 
-function NumberRange({ range, onChange }) {
+function NumberRange({ value, onChange }) {
     return (
         <Form.Group>
-            <Form.Label className="float-left">0</Form.Label>
-            {range}
-            <Form.Label className="float-right">20</Form.Label>
+            <p className="text-center">
+                <Form.Label className="float-left">0</Form.Label>
+                {value}
+                <Form.Label className="float-right">20</Form.Label>
+            </p>
             <Form.Control
                 type="range"
                 min="0"
                 max="20"
                 step="1"
-                value={range}
+                value={value}
                 onChange={onChange}
             />
         </Form.Group>
@@ -48,7 +50,7 @@ function OptionMenu() {
         <Form className="OptionMenu">
             <h2>Customize your Problem set!</h2>
             <Operators />
-            <NumberRange value={range} onChange={onChange}/>
+            <NumberRange value={range} onChange={onChange} />
             <Button variant="outline-primary" className="GenerateButton">Generate!</Button>
         </Form>
     );
