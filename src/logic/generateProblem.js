@@ -20,6 +20,15 @@ function getRandomOperator(operators) {
     return operators[index];
 }
 
+function preventNegativeAns({ a, b, op }) {
+    let newProblem = {
+        a: b,
+        b: a,
+        op: op,
+    }
+    return newProblem;
+}
+
 function generateProblem({ min, max, count, operators }) {
     const problemset = [];
     for (let i = 0; i < count; i++) {
@@ -28,6 +37,9 @@ function generateProblem({ min, max, count, operators }) {
             a: getRandomInt(min, max),
             b: getRandomInt(min, max),
             op: getRandomOperator(operators),
+        }
+        if (problem.op === '-' && (problem.a < problem.b)) {
+            problem = preventNegativeAns(problem);
         }
         problem.ans = solveEquation(problem);
         problemset.push(problem);
