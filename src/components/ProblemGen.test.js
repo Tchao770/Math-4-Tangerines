@@ -1,4 +1,4 @@
-import { ProblemGen, getRandomInt } from "./ProblemGen"
+import { ProblemGen, getRandomInt } from "./ProblemGen";
 
 test('Return size of array', () => {
     const genLength = ProblemGen({ min: 0, max: 3, count: 5, operators: ['+', '-'] }).length;
@@ -12,7 +12,8 @@ test('Return an array with 2 elements, both 1 + 1', () => {
             expect.objectContaining({
                 a: 1,
                 b: 1,
-                operator: '+',
+                op: '+',
+                ans: 2,
             })
         ])
     );

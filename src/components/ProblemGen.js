@@ -1,5 +1,14 @@
-function Solve() {
-
+function solveEquation({ a, b, op }) {
+    switch (op) {
+        case ('+'):
+            return a + a;
+        case ('-'):
+            return a - b;
+        case ('*'):
+            return a * b;
+        case ('/'):
+            return a / b;
+    }
 }
 
 function getRandomInt(min, max) {
@@ -18,8 +27,9 @@ function ProblemGen({ min, max, count, operators }) {
         {
             a: getRandomInt(min, max),
             b: getRandomInt(min, max),
-            operator: getRandomOperator(operators),
+            op: getRandomOperator(operators),
         }
+        problem.ans = solveEquation(problem);
         problemset.push(problem);
     }
     return problemset;
