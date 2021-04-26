@@ -1,7 +1,7 @@
 function solveEquation({ a, b, op }) {
     switch (op) {
         case ('+'):
-            return a + a;
+            return a + b;
         case ('-'):
             return a - b;
         case ('*'):
@@ -20,7 +20,7 @@ function getRandomOperator(operators) {
     return operators[index];
 }
 
-function ProblemGen({ min, max, count, operators }) {
+function generateProblem({ min, max, count, operators }) {
     const problemset = [];
     for (let i = 0; i < count; i++) {
         let problem =
@@ -35,4 +35,4 @@ function ProblemGen({ min, max, count, operators }) {
     return problemset;
 }
 
-export { ProblemGen, getRandomInt };
+export { generateProblem, getRandomInt };

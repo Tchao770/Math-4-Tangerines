@@ -1,12 +1,12 @@
-import { ProblemGen, getRandomInt } from "./ProblemGen";
+import { generateProblem, getRandomInt } from "./generateProblem";
 
 test('Return size of array', () => {
-    const genLength = ProblemGen({ min: 0, max: 3, count: 5, operators: ['+', '-'] }).length;
+    const genLength = generateProblem({ min: 0, max: 3, count: 5, operators: ['+', '-'] }).length;
     expect(genLength).toBe(5);
 });
 
 test('Return an array with 2 elements, both 1 + 1', () => {
-    const genProblem = ProblemGen({ min: 1, max: 1, count: 2, operators: ['+'] });
+    const genProblem = generateProblem({ min: 1, max: 1, count: 2, operators: ['+'] });
     expect(genProblem).toEqual(
         expect.arrayContaining([
             expect.objectContaining({
