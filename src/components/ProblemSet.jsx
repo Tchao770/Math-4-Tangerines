@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap/";
+import { Container, Row, Col, Form } from "react-bootstrap/";
 import { generateProblem } from "../logic/generateProblem.js";
 
 const problemList = generateProblem({ min: 1, max: 10, count: 64, operators: ['+', '-'] });
@@ -9,7 +9,7 @@ while (problemList.length) newArr.push(problemList.splice(0, rows));
 
 function ProblemSet() {
     return (
-        <Container>
+        <Container className="ProblemGrid">
             {newArr.map((problemRow) => {
                 return (
                     < Row >
@@ -17,7 +17,9 @@ function ProblemSet() {
                             const { a, b, op, ans } = problem;
                             return (
                                 <Col>
-                                    <p key={index}>{a} {op} {b} = {ans}</p>
+                                    <Form.Label key={index}>{a} {op} {b} =
+                                        <Form.Control size="sm" type="number" value={ans}/>
+                                    </Form.Label>
                                 </Col>)
                         })
                         }
