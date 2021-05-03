@@ -19,6 +19,20 @@ test('Return an array with 2 elements, both 1 + 1', () => {
     );
 });
 
+test('Return an array with 5 elements, with at least one operation containing "1 + 0"', () => {
+    const genProblem = generateProblem({ min: 0, max: 1, count: 5, operators: ['+'] });
+    expect(genProblem).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({
+                a: 1,
+                b: 0,
+                op: '+',
+                ans: 1,
+            })
+        ])
+    );
+});
+
 test('Random number gen returns number in specified range', () => {
     const randVal = getRandomInt(1, 5);
     expect(randVal).toBeGreaterThanOrEqual(1);

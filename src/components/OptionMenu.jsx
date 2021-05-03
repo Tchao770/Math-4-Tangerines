@@ -56,6 +56,7 @@ function SetRange({ range, handleChange }) {
                         required
                         name="range"
                         type="number"
+                        id="min"
                         value={range.min}
                         onChange={(e) => handleChange(e)} />
                 </Col>
@@ -65,6 +66,7 @@ function SetRange({ range, handleChange }) {
                         required
                         name="range"
                         type="number"
+                        id="max"
                         value={range.max}
                         onChange={(e) => handleChange(e)} />
                 </Col>
@@ -87,7 +89,7 @@ function SetCount({ count, handleChange }) {
     );
 }
 
-function OptionMenu() {
+function OptionMenu({retrieveOptions}) {
     const [validated, setValidated] = useState(false);
     const [checked, setChecked] = useState({
         '+': false,
@@ -99,16 +101,16 @@ function OptionMenu() {
         min: 0,
         max: 0,
     });
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(64);
 
     const handleSubmit = (e) => {
         const form = e.currentTarget;
-        if (form.checkVailidity() === false) {
-            e.preventDefault();
+        e.preventDefault();
+        if (form.checkValidity() === false) {
             e.stopPropagation();
         }
         setValidated(true);
-        optionConcat(checked, range, count);
+        retrieveOptions(optionConcat(checked, range, count));
     }
 
     const handleChange = (e) => {
@@ -118,7 +120,7 @@ function OptionMenu() {
                 setCount(target.value);
                 break;
             case ("range"):
-                setRange(target.value);
+                setRange({ ...range, [target.id]: target.value });
                 break;
             case ("operators"):
                 setChecked({ ...checked, [target.id]: !checked[target.id] });

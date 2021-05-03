@@ -12,7 +12,7 @@ function solveEquation({ a, b, op }) {
 }
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function getRandomOperator(operators) {
@@ -30,6 +30,7 @@ function preventNegativeAns({ a, b, op }) {
 }
 
 function generateProblem({ min, max, count, operators }) {
+    console.log(max);
     const problemset = [];
     for (let i = 0; i < count; i++) {
         let problem =
