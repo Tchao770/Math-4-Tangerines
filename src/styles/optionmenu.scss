@@ -1,5 +1,4 @@
 .OptionMenu{
-    height: 400px;
     width: 400px;
     padding: 1rem;
     background-color: white;
@@ -9,7 +8,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    visibility: hidden;
+    visibility: visible;
+    z-index: 1000;
     h2{
         text-align: center;
     }
@@ -23,5 +23,8 @@
     .GenerateButton{
         display: flex;
         margin: auto;
+    }
+    input{
+        border: solid 1px hsl(208,100%,66%);
     }
 }

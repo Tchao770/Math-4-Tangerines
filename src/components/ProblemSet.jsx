@@ -1,7 +1,7 @@
 import { Container, Row, Col, Form } from "react-bootstrap/";
 import { generateProblem } from "../logic/generateProblem.js";
 
-const problemList = generateProblem({ min: 1, max: 10, count: 64, operators: ['+', '-'] });
+const problemList = generateProblem({operators: ['+', '-'], min: 1, max: 10, count: 64 });
 const newArr = [];
 const count = 64;
 const rows = Math.sqrt(count);
@@ -17,7 +17,7 @@ function ProblemSet() {
                             const { a, b, op, ans } = problem;
                             return (
                                 <Col>
-                                    <Form.Label key={index}>{a} {op} {b} =
+                                    <Form.Label key={`${index}${a}${b}${op}`}>{a} {op} {b} =
                                         <Form.Control size="sm" type="number" value={ans}/>
                                     </Form.Label>
                                 </Col>)
