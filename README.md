@@ -15,4 +15,7 @@ An elapsed timer to gauge users performance and speed when solving problems.
 
 ### Technologies Used
 ReactJS
-Styled Components
+
+Bootstrap
+
+SASS
