@@ -19,3 +19,9 @@ ReactJS
 Bootstrap
 
 SASS
+
+### How to get started
+1. Clone this repo
+2. Navigate to repo directory via terminal
+3. Install npm via the terminal using command `npm install`
+4. Run npm run dev

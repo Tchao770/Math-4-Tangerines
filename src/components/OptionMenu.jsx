@@ -89,7 +89,10 @@ function SetCount({ count, handleChange }) {
     );
 }
 
-function OptionMenu({retrieveOptions}) {
+function OptionMenu({ retrieveOptions }) {
+    const [visible, setVisible] = useState({
+        display: "block"
+    });
     const [validated, setValidated] = useState(false);
     const [checked, setChecked] = useState({
         '+': false,
@@ -129,13 +132,17 @@ function OptionMenu({retrieveOptions}) {
     }
 
     return (
-        <Form className="OptionMenu" noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form className="OptionMenu" noValidate validated={validated} onSubmit={handleSubmit} style={visible}>
             <h2>Customize your Problem set!</h2>
             <Operators checked={checked} handleChange={handleChange} />
             <SetRange range={range} handleChange={handleChange} />
             <SetCount count={count} handleChange={handleChange} />
             {/* <NumberRange value={range} onChange={onChange} /> */}
-            <Button variant="outline-primary" className="GenerateButton" type="submit">Generate!</Button>
+            <Button
+                variant="outline-primary"
+                className="GenerateButton"
+                type="submit"
+                onClick={() => setVisible({display: "none"})}>Generate!</Button>
         </Form>
     );
 }
