@@ -29,11 +29,16 @@ function preventNegativeAns({ a, b, op }) {
     return newProblem;
 }
 
-function generateProblem({ min, max, count, operators }) {
+function generateProblem({ min, max, count, operators, problemStyle }) {
     console.log(max);
     const problemset = [];
     for (let i = 0; i < count; i++) {
-        let problem =
+        let problem = (problemStyle === "singleNum") ? {
+            a: min,
+            b: getRandomInt(1, max),
+            op: getRandomOperator(operators),
+        }
+        :
         {
             a: getRandomInt(min, max),
             b: getRandomInt(min, max),
@@ -41,6 +46,9 @@ function generateProblem({ min, max, count, operators }) {
         }
         if (problem.op === '-' && (problem.a < problem.b)) {
             problem = preventNegativeAns(problem);
+        }
+        if(problem.op === '/' && (problem.b === 0)){
+            problem.b = 1;
         }
         problem.ans = solveEquation(problem);
         problemset.push(problem);

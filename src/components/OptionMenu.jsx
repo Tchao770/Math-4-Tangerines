@@ -4,24 +4,40 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from 'react';
 import optionConcat from '../logic/optionConcat';
+import { Breadcrumb } from 'react-bootstrap';
+
+function ProblemStyles({ handleChange }) {
+    return (
+        <Form.Group className="ProblemLayout">
+            <Form.Label>Problem Style</Form.Label>
+            <Form.Control as="select" name="selection" onChange={(e) => handleChange(e)}>
+                <option value="default">Select a style!</option>
+                <option value="singleNum">Single number focus (9 + 1, 9 + 2, 9 + 5, ...)</option>
+                <option value="randomNum">Random numbers between A and B</option>
+            </Form.Control>
+        </Form.Group>
+    )
+}
 
 function Operators({ handleChange }) {
     return (
         <Form.Group className="Operators">
             <Form.Label>Operators</Form.Label>
-            {
-                ['+', '-', '*', '/'].map((operator) =>
-                    <Form.Check
-                        required
-                        name="operators"
-                        type='checkbox'
-                        id={operator}
-                        label={operator}
-                        key={operator}
-                        onChange={(e) => handleChange(e)}
-                    />
-                )
-            }
+            <div className="opCheckboxes">
+                {
+                    ['+', '-', '*', '/'].map((operator) =>
+                        <Form.Check
+                            required
+                            name="operators"
+                            type='checkbox'
+                            id={operator}
+                            label={operator}
+                            key={operator}
+                            onChange={(e) => handleChange(e)}
+                        />
+                    )
+                }
+            </div>
         </Form.Group>
     )
 }
@@ -46,12 +62,28 @@ function NumberRange({ value, onChange }) {
     );
 }
 */
-function SetRange({ range, handleChange }) {
+
+
+function SetRange({ range, handleChange, problemStyle }) {
+    const title = {
+        first: "",
+        second: ""
+    };
+    switch (problemStyle) {
+        case ("singleNum"):
+            title.first = "Number Focus"
+            title.second = "Max Number to Add"
+            break;
+        case ("randomNum"):
+            title.first = "Minimum Number"
+            title.second = "Maximum Number"
+            break;
+    }
     return (
-        <Form.Group>
+        <Form.Group style={{display: "block"}}>
             <Row>
                 <Col>
-                    <Form.Label>Minimum Number</Form.Label>
+                    <Form.Label>{title.first}</Form.Label>
                     <Form.Control
                         required
                         name="range"
@@ -61,7 +93,7 @@ function SetRange({ range, handleChange }) {
                         onChange={(e) => handleChange(e)} />
                 </Col>
                 <Col>
-                    <Form.Label>Maximum Number</Form.Label>
+                    <Form.Label>{title.second}</Form.Label>
                     <Form.Control
                         required
                         name="range"
@@ -93,6 +125,9 @@ function OptionMenu({ retrieveOptions }) {
     const [visible, setVisible] = useState({
         display: "block"
     });
+
+    const [problemStyle, setProblemStyle] = useState();
+
     const [validated, setValidated] = useState(false);
     const [checked, setChecked] = useState({
         '+': false,
@@ -113,7 +148,7 @@ function OptionMenu({ retrieveOptions }) {
             e.stopPropagation();
         }
         setValidated(true);
-        retrieveOptions(optionConcat(checked, range, count));
+        retrieveOptions(optionConcat(checked, range, count, problemStyle));
     }
 
     const handleChange = (e) => {
@@ -125,24 +160,29 @@ function OptionMenu({ retrieveOptions }) {
             case ("range"):
                 setRange({ ...range, [target.id]: target.value });
                 break;
+            case ("selection"):
+                setProblemStyle(target.value);
+                break;
             case ("operators"):
                 setChecked({ ...checked, [target.id]: !checked[target.id] });
                 break;
         }
+        console.log(target.value);
     }
 
     return (
         <Form className="OptionMenu" noValidate validated={validated} onSubmit={handleSubmit} style={visible}>
             <h2>Customize your Problem set!</h2>
+            <ProblemStyles handleChange={handleChange} />
             <Operators checked={checked} handleChange={handleChange} />
-            <SetRange range={range} handleChange={handleChange} />
+            <SetRange range={range} handleChange={handleChange} problemStyle={problemStyle} />
             <SetCount count={count} handleChange={handleChange} />
             {/* <NumberRange value={range} onChange={onChange} /> */}
             <Button
                 variant="outline-primary"
                 className="GenerateButton"
                 type="submit"
-                onClick={() => setVisible({display: "none"})}>Generate!</Button>
+                onClick={() => setVisible({ display: "none" })}>Generate!</Button>
         </Form>
     );
 }

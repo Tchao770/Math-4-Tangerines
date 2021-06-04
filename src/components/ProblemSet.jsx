@@ -1,8 +1,11 @@
+//import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap/";
 import { generateProblem } from "../logic/generateProblem.js";
 
 function ProblemSet({ options }) {
-    console.log(options);
+    //const { register } = useForm();
+    const [anss, setAnss] = useState(0);
     const problemList = generateProblem(options);
     const newArr = [];
     const count = 64;
@@ -18,7 +21,7 @@ function ProblemSet({ options }) {
                             return (
                                 <Col>
                                     <Form.Label key={`${index}${a}${b}${op}`}>{a} {op} {b} =
-                                        <Form.Control size="sm" type="number" value={ans} />
+                                        <Form.Control size="sm" type="number" value={ans}  onChange={console.log("nice")}/>
                                     </Form.Label>
                                 </Col>)
                         })

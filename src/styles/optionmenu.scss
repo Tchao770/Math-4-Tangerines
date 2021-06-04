@@ -1,30 +1,37 @@
-.OptionMenu{
+.OptionMenu {
     width: 400px;
     padding: 1rem;
     background-color: white;
     border-radius: 25px;
-    border: solid 1px hsl(208,100%,66%);
+    border: solid 1px hsl(208, 100%, 66%);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: visible;
     z-index: 1000;
-    h2{
+    h2 {
         text-align: center;
     }
-    .Operators{
-        padding: 0.5rem;
-        border: solid 1px hsl(208,100%,66%);
+    .ProblemLayout {
+        select {
+            border: solid 1px hsl(208, 100%, 66%);
+        }
+    }
+    .Operators {
         display: flex;
         flex-direction: column;
-        background-color: white;
+        .opCheckboxes {
+            padding: 0.5rem;
+            border: solid 1px hsl(208, 100%, 66%);
+            
+        }
     }
-    .GenerateButton{
+    .GenerateButton {
         display: flex;
         margin: auto;
     }
-    input{
-        border: solid 1px hsl(208,100%,66%);
+    input {
+        border: solid 1px hsl(208, 100%, 66%);
     }
 }
