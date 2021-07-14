@@ -1,5 +1,3 @@
-import { generateProblem } from "./generateProblem";
-
 function optionConcat(checked, range, count, problemStyle){
     const options = {};
     const operatorArr = [];

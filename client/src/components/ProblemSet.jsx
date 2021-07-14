@@ -5,7 +5,7 @@ import { generateProblem } from "../logic/generateProblem.js";
 
 function ProblemSet({ options }) {
     //const { register } = useForm();
-    const [anss, setAnss] = useState(0);
+    const [anss, setAnss] = useState();
     const problemList = generateProblem(options);
     const newArr = [];
     const count = 64;
@@ -20,8 +20,16 @@ function ProblemSet({ options }) {
                             const { a, b, op, ans } = problem;
                             return (
                                 <Col>
-                                    <Form.Label key={`${index}${a}${b}${op}`}>{a} {op} {b} =
-                                        <Form.Control size="sm" type="number" value={ans}  onChange={console.log("nice")}/>
+                                    <Form.Label
+                                        key={`${index}${a}${b}`}>
+
+                                        {a} {op} {b} =
+
+                                        <Form.Control
+                                            size="sm"
+                                            type="number"
+                                            value={anss}
+                                            onChange={(e) => setAnss(e.value)} />
                                     </Form.Label>
                                 </Col>)
                         })
