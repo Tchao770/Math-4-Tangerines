@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState } from "react";
-import optionConcat from "../logic/optionConcat";
+import optionConcat from "../../logic/optionConcat";
 
 function SetName({ name, handleChange }) {
   return (
@@ -142,11 +142,7 @@ function SetCount({ count, handleChange }) {
   );
 }
 
-function OptionMenu({ retrieveOptions }) {
-  const [visible, setVisible] = useState({
-    display: "block",
-  });
-
+function OptionMenu({ visible, setVisible, retrieveOptions }) {
   const [problemStyle, setProblemStyle] = useState();
 
   const [validated, setValidated] = useState(false);
@@ -222,7 +218,7 @@ function OptionMenu({ retrieveOptions }) {
         type="submit"
         onClick={() => setVisible({ display: "none" })}
       >
-        Generate!
+        Save
       </Button>
     </Form>
   );
