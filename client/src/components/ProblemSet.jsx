@@ -11,8 +11,10 @@ function ProblemSet({ options }) {
     const count = 64;
     const rows = Math.sqrt(count);
     while (problemList.length) newArr.push(problemList.splice(0, rows));
+    console.log(options);
     return (
         <Container className="ProblemGrid">
+            <h1>{options.name}</h1>
             {newArr.map((problemRow) => {
                 return (
                     < Row >
