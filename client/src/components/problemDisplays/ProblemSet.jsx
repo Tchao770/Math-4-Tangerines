@@ -4,16 +4,16 @@ import { Container, Row, Col, Form } from "react-bootstrap/";
 import { generateProblem } from "../../logic/generateProblem.js";
 
 function ProblemSet(props) {
-  console.log(props.location.state);
+  const options = props.location.state.problemItem;
   const [anss, setAnss] = useState();
-  const problemList = [{ a: 1, b: 2, op: "+" }]; //generateProblem(options);
+  const problemList = generateProblem(options);
   const newArr = [];
   const count = 64;
   const rows = Math.sqrt(count);
-  //      <h1>{options.name}</h1>
   while (problemList.length) newArr.push(problemList.splice(0, rows));
   return (
     <Container className="ProblemGrid">
+      <h1>{options.name}</h1>
       {newArr.map((problemRow) => {
         return (
           <Row>

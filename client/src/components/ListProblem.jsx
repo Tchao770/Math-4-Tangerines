@@ -34,7 +34,13 @@ function ListProblem({ problemList, setVisible }) {
         );
       })}
       <Switch>
-        <Route path="/:urlName" exact component={ProblemSet} />
+        <Route
+          path="/problems/:urlName"
+          exact
+          render={(props) => (
+            <ProblemSet {...props} /> //problemItem={problemItem} />
+          )}
+        />
       </Switch>
     </ListGroup>
   );
